@@ -16,8 +16,8 @@ public class Main {
 		//declare variables
 		int numOfGamesToPlay;
 		int numOfGamesPlayed;
-		int playerWins;
-		int computerWins;
+		int playerWins = 0;
+		int computerWins = 0;
 		
 
 		
@@ -26,8 +26,31 @@ public class Main {
 		numOfGamesToPlay = in.nextInt();
 		
 		//play
+		for (numOfGamesPlayed = 0; numOfGamesPlayed < numOfGamesToPlay; numOfGamesPlayed++) {
+			
+			switch (playTurn()) {
+			case 1:
+				playerWins++;
+				break;
+			case 2:
+				computerWins++;
+				break;
+			default:
+				System.out.println("Oh darn, a tie.");
+				break;
+			}
+			
+			if (computerWins > playerWins) {
+				System.out.println("Sorry, the computer beat you on this one.");
+			} else if (playerWins > computerWins) {
+				System.out.println("Good job, you beat the computer.");
+			} else {
+				System.out.println("It looks like you tied, try agian next time.");
+			}
+			
+		}
 		
-		System.out.println(playTurn());
+		//wait until player hits enter to exit
 		in.next();
 	}
 
@@ -36,7 +59,6 @@ public class Main {
 	 */
 	public static int playTurn() {
 		//initialize variables
-		boolean didPlayerWin = false;
 		String playersPlayString;
 		int playersPlay;
 		int computersPlay;
