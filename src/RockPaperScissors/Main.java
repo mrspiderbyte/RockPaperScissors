@@ -1,5 +1,6 @@
 package RockPaperScissors;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +12,8 @@ public class Main {
 	//initialize scanner
 	static Scanner in = new Scanner(System.in);
 	
+	static //initialize random number generator
+	Random rand = new Random();
 	
 	public static void main(String[] args) {
 		//declare variables
@@ -31,26 +34,28 @@ public class Main {
 			switch (playTurn()) {
 			case 1:
 				playerWins++;
+				System.out.println("You won this round.");
 				break;
 			case 2:
 				computerWins++;
+				System.out.println("The computer won this round.");
 				break;
 			default:
 				System.out.println("Oh darn, a tie.");
 				break;
 			}
-			
-			if (computerWins > playerWins) {
-				System.out.println("Sorry, the computer beat you on this one.");
-			} else if (playerWins > computerWins) {
-				System.out.println("Good job, you beat the computer.");
-			} else {
-				System.out.println("It looks like you tied, try agian next time.");
-			}
-			
+		}
+		
+		if (computerWins > playerWins) {
+			System.out.print("\nSorry, the computer beat you on this one overall. ");
+		} else if (playerWins > computerWins) {
+			System.out.print("\nGood job, you beat the computer overall. ");
+		} else {
+			System.out.print("\nOh darn, you tied overall. Try again next time. ");
 		}
 		
 		//wait until player hits enter to exit
+		System.out.println("Press enter to exit. ");
 		in.next();
 	}
 
@@ -82,13 +87,7 @@ public class Main {
 			return 2;
 		}
 		
-		if (Math.random() <= 0.33) {
-			computersPlay = 1;
-		} else if (Math.random() <= 0.66) {
-			computersPlay = 2;
-		} else {
-			computersPlay = 3;
-		}
+		computersPlay = rand.nextInt(2) + 1;
 		
 		switch (computersPlay) {
 		case 1:
