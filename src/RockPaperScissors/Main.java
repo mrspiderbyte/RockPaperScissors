@@ -87,7 +87,17 @@ public class Main {
 			return 2;
 		}
 		
-		computersPlay = rand.nextInt(2) + 1;
+		double computerSeed = Math.random();
+		
+		if (computerSeed < 0.33) {
+			computersPlay = 1;
+		} else if (computerSeed < 0.66) {
+			computersPlay = 2;
+		} else {
+			computersPlay = 3;
+		}
+		
+//		computersPlay = rand.nextInt(2) + 1;
 		
 		switch (computersPlay) {
 		case 1:
